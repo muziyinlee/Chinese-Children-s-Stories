@@ -1,0 +1,6 @@
+{
+  "name": "Chinese Children's Stories | 中国儿童故事",
+  "description": "A bilingual platform sharing classic Chinese children's tales. Designed with professional layout and Google AdSense compliance in mind.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
