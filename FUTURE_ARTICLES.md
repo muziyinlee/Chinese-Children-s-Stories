@@ -1,3 +1,5 @@
+##### 暂定域名: cctaLes.net 或 cctaLes.top
+
 # Future Article Directory / 未来更新文章目录
 
 This document contains a planned list of 50+ traditional Chinese stories, myths, fables, and historical legends to be added to the website in future updates to maintain a rich and continuous content pipeline for SEO and AdSense compliance.
