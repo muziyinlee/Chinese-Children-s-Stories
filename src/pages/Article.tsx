@@ -1,15 +1,22 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import { articles } from "../data/articles";
 import { AdPlaceholder } from "../components/AdPlaceholder";
 import { BilingualText } from "../components/BilingualText";
+import { useEffect } from "react";
 
 export function Article() {
   const { id } = useParams<{ id: string }>();
-  const article = articles.find((a) => a.id === id);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  const currentIndex = articles.findIndex((a) => a.id === id);
+  const article = articles[currentIndex];
 
   if (!article) {
     return (
@@ -22,6 +29,9 @@ export function Article() {
       </div>
     );
   }
+
+  const prevArticle = currentIndex > 0 ? articles[currentIndex - 1] : null;
+  const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
 
   const renderContent = () => {
     return article.content.map((paragraph, index) => (
@@ -92,6 +102,58 @@ export function Article() {
       {/* Bottom Ad */}
       <div className="max-w-2xl mx-auto mt-16">
         <AdPlaceholder />
+       {/* Article Navigation */}
+       <div className="border-t border-slate-200 mt-16 pt-10 border-b pb-10">
+          <h3 className="text-xl font-semibold text-slate-800 text-center mb-10 flex items-center justify-center gap-3">
+            <BookOpen size={24} className="text-slate-400" />
+            Continue Reading / 继续阅读
+          </h3>
+          <div className="flex flex-col sm:flex-row justify-between items-stretch gap-6">
+            {prevArticle ? (
+              <Link 
+                to={`/article/${prevArticle.id}`}
+                className="flex-1 group bg-white rounded-xl p-6 border border-slate-100 shadow-sm hover:shadow-md hover:border-slate-200 transition text-left flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-xs text-slate-400 font-medium tracking-wide uppercase mb-3 flex items-center gap-1 group-hover:text-blue-600 transition">
+                    <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                    Previous / 上一篇
+                  </div>
+                  <div className="font-semibold text-slate-800 line-clamp-2 md:text-lg mb-1 group-hover:text-blue-700 transition">
+                    {prevArticle.titleEn}
+                  </div>
+                  <div className="text-slate-500 text-sm line-clamp-1 group-hover:text-blue-600/80 transition">
+                    {prevArticle.titleZh}
+                  </div>
+                </div>
+              </Link>
+            ) : (
+               <div className="flex-1" />
+            )}
+
+            {nextArticle ? (
+              <Link 
+                to={`/article/${nextArticle.id}`}
+                className="flex-1 group bg-white rounded-xl p-6 border border-slate-100 shadow-sm hover:shadow-md hover:border-slate-200 transition text-right flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-xs text-slate-400 font-medium tracking-wide uppercase mb-3 flex items-center gap-1 justify-end group-hover:text-blue-600 transition">
+                    Next / 下一篇
+                    <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
+                  <div className="font-semibold text-slate-800 line-clamp-2 md:text-lg mb-1 group-hover:text-blue-700 transition">
+                    {nextArticle.titleEn}
+                  </div>
+                  <div className="text-slate-500 text-sm line-clamp-1 group-hover:text-blue-600/80 transition">
+                    {nextArticle.titleZh}
+                  </div>
+                </div>
+              </Link>
+            ) : (
+                <div className="flex-1" />
+            )}
+          </div>
+        </div>
       </div>
 
     </article>

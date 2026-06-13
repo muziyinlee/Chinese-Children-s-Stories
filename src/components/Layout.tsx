@@ -15,11 +15,9 @@ export function Layout() {
       <header className="border-b border-slate-100 sticky top-0 bg-white/90 backdrop-blur-md z-50">
         <div className="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="bg-blue-600 text-white p-2 rounded-lg group-hover:bg-blue-700 transition">
-              <BookOpen size={24} />
-            </div>
+            <img src="/favicon.svg" alt="Chinese Children's Stories Logo" className="w-10 h-10 group-hover:scale-105 transition-transform" />
             <div>
-              <h1 className="font-bold text-xl tracking-tight leading-none mb-1">C·C·S</h1>
+              <h1 className="font-bold text-xl tracking-tight leading-none mb-1 text-slate-800 group-hover:text-red-700 transition-colors">C·C·S</h1>
               <span className="text-[10px] text-slate-500 font-medium tracking-widest uppercase">Classic Tales</span>
             </div>
           </Link>
@@ -59,8 +57,8 @@ export function Layout() {
       <footer className="bg-slate-50 border-t border-slate-200 py-16 mt-20">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
-            <div className="flex items-center gap-2 mb-4 text-slate-800">
-              <BookOpen size={20} />
+            <div className="flex items-center gap-3 mb-4 text-slate-800">
+              <img src="/favicon.svg" alt="Chinese Children's Stories Logo" className="w-8 h-8" />
               <span className="font-bold tracking-tight">Chinese Children's Stories</span>
             </div>
             <p className="text-slate-500 text-sm leading-relaxed max-w-sm mb-6">
